@@ -1,0 +1,767 @@
+package com.sample
+import javax.swing.JOptionPane
+
+declare Question_and_Answer
+	question: String
+	answer: String
+end
+
+//main question
+rule "Why do you want a classic?"
+    when
+    then
+        Object[] possibleValues = { "Reliability and convenience bore me", 
+        							"I guess I'm making some kind of statement about something", 
+        							"New cars have no soul",
+        							"I prefer the style",
+        							"Love speed, hate safety" };
+        							
+        String que = "Why do you want a classic?";
+        String ans = GUI.question(possibleValues, que);
+		
+		Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+//1st path
+rule "Reliability and convenience bore me"
+	when 
+		q: Question_and_Answer(question=="Why do you want a classic?" && answer=="Reliability and convenience bore me")
+	then
+		Object[] possibleValues = { "I want to know how cars work", 
+        							"I'm erotically drawn to tow trucks and freeway how cars work"};
+        							
+        String que = "Oh yeah? Why's that?";
+        String ans = GUI.question(possibleValues, que);
+        
+        
+		Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+
+
+rule "I want to know how cars work"
+	when
+		q: Question_and_Answer(question=="Oh yeah? Why's that?" && answer=="I want to know how cars work")
+	then
+		Object[] possibleValues = { "Sounds good", 
+        							"Not that archaic",
+        							"More archaic"};
+        
+        String que = "So, something really simple?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "I'm erotically drawn to tow trucks and freeway how cars work"
+	when
+		q: Question_and_Answer(question=="Oh yeah? Why's that?" && answer=="I'm erotically drawn to tow trucks and freeway how cars work")
+	then
+		Object[] possibleValues = { "Yes","Also really lovely"};
+		
+		String que = "Ok. Should it be pretty quick?";
+		String ans = GUI.question(possibleValues, que);
+		
+		Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "Yes"
+	when
+		q: Question_and_Answer(question=="Ok. Should it be pretty quick?" && answer=="Yes")
+	then
+		String mes = "LOTUS ELAN";
+		GUI.message(mes);
+end
+
+rule "Also really lovely"
+	when
+		q: Question_and_Answer(question=="Ok. Should it be pretty quick?" && answer=="Also really lovely")
+	then
+		String mes = "ALFA ROMEO GIULIA SUPER";
+		GUI.message(mes);
+end
+
+rule "Sounds good"
+	when
+		q: Question_and_Answer(question=="So, something really simple?" && answer=="Sounds good")
+	then
+		String mes = "HONDA CIVIC, WILLYS JEEP,VW THING, CITROEN 2CV";
+		GUI.message(mes);
+end
+
+rule "Not that archaic"
+	when
+		q: Question_and_Answer(question=="So, something really simple?" && answer=="Not that archaic")
+	then
+		String mes = "FORD MODEL A";
+		GUI.message(mes);
+end
+
+rule "More archaic"
+	when
+		q: Question_and_Answer(question=="So, something really simple?" && answer=="More archaic")
+	then
+		String mes = "FORD MODEL T";
+		GUI.message(mes);
+end
+
+//2nd path
+rule "I guess I'm making some kind of statement about something"
+	when 
+		q: Question_and_Answer(question=="Why do you want a classic?" && answer=="I guess I'm making some kind of statement about something")
+	then
+		 Object[] possibleValues = { "I'm really rich, but like to pretend I'm still hippie",
+		 							 "I run an nyc-themed diner in Las Vegas",
+		 							 "The mothership left me in Paris",
+		 							 "I live dangerously and nader can suck it",
+		 							 "I'm kook. An american kook",
+		 							 "I take driving seriously and have the gloves to prove it",
+		 							 "My wallet is on a chain",
+		 							 "I'm a refugee from an alternate future with zeppelins and shit",
+		 							 "I hate people knowing what I drive",
+		 							 "I wanted a motocycle but I have no balance",
+		 							 "I like being part of a massive automotive subculture",
+		 							 "I will only drive vehicles with two distinct luggage areas"};
+		 
+		String que = "Great, what statement?";
+		String ans = GUI.question(possibleValues, que);
+		
+		Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "I'm really rich, but like to pretend I'm still hippie"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I'm really rich, but like to pretend I'm still hippie")
+	then
+		String mes = "VW TYPE2 MICROBUS";
+		GUI.message(mes);
+end
+
+rule "I run an nyc-themed diner in Las Vegas"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I run an nyc-themed diner in Las Vegas")
+	then
+		String mes = "CHECKER MARATHON";
+		GUI.message(mes);
+end
+
+rule "The mothership left me in Paris"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="The mothership left me in Paris")
+	then
+		String mes = "CITROEN SM"; 
+		GUI.message(mes);
+end
+
+rule "I live dangerously and nader can suck it"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I live dangerously and nader can suck it")
+	then
+		String mes = "CHEVY CORVAIR"; 
+		GUI.message(mes);
+end
+
+rule "I'm kook. An american kook"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I'm kook. An american kook")
+	then
+		String mes = "AMC PACER, AMC GREMLIN, AMC AMX";
+		GUI.message(mes);
+end
+
+rule "I take driving seriously and have the gloves to prove it"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I take driving seriously and have the gloves to prove it")
+	then
+		String mes = "BMW E30, PORSHE 911";
+		GUI.message(mes);
+end
+
+rule "My wallet is on a chain"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="My wallet is on a chain")
+	then
+		Object[] possibleValues = { "Yes",
+									"Not for style, I'm tired of losing it"};
+									
+		String que = "Are you here for style?";	
+		String ans = GUI.question(possibleValues, que);
+								
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "Yes_2"
+	when
+		q: Question_and_Answer(question=="Are you here for style?" && answer=="Yes")
+	then
+		String mes = "FORD FALCON, PLYMOUTH VALIANT";
+		GUI.message(mes);
+end
+
+rule "Not for style, I'm tired of losing it"
+	when
+		q: Question_and_Answer(question=="Are you here for style?" && answer=="Not for style, I'm tired of losing it")
+	then
+		String mes = "RAMBLER AMERICAN";
+		GUI.message(mes);
+end
+
+rule "I'm a refugee from an alternate future with zeppelins and shit"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I'm a refugee from an alternate future with zeppelins and shit")
+	then
+		String mes = "TATRA T87";
+		GUI.message(mes);
+end
+
+rule "I hate people knowing what I drive"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I hate people knowing what I drive")
+	then
+		String mes = "STERLING 825, MITSUBISHI STARION, ISUZU I-MARK";
+		GUI.message(mes);
+end
+
+rule "I wanted a motocycle but I have no balance"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I wanted a motocycle but I have no balance")
+	then
+		String mes = "LOTUS 7";
+		GUI.message(mes);
+end
+
+rule "I like being part of a massive automotive subculture"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I like being part of a massive automotive subculture")
+	then
+		String mes = "VW BETTLE, MGB, DATSUN 240Z, VOLVO 240";
+		GUI.message(mes);
+end
+
+rule "I will only drive vehicles with two distinct luggage areas"
+	when
+		q: Question_and_Answer(question=="Great, what statement?" && answer=="I will only drive vehicles with two distinct luggage areas")
+	then
+		Object[] possibleValues = { "No",
+									"Yes"};
+        String que = "Something faster than VW TYPE III?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "No"
+	when 
+		q: Question_and_Answer(question=="Something faster than VW TYPE III?" && answer=="No")
+	then
+		String mes = "VW TYPE III";
+		GUI.message(mes);
+end
+
+rule "Yes_3"
+	when 
+		q: Question_and_Answer(question=="Something faster than VW TYPE III?" && answer=="Yes")
+	then
+		Object[] possibleValues = { "No",
+									"Yes"};
+        
+        String que = "Something faster than PORSHE 914?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "No_1"
+	when 
+		q: Question_and_Answer(question=="Something faster than PORSHE 914?" && answer=="No")
+	then
+		String mes = "PORSHE 914";
+		GUI.message(mes);
+end
+
+rule "Yes_4"
+	when 
+		q: Question_and_Answer(question=="Something faster than PORSHE 914?" && answer=="Yes")
+	then
+		String mes = "DE TOMASO MANGUSTA";
+		GUI.message(mes);
+end
+
+//3rd path
+rule "New cars have no soul"
+	when
+		q: Question_and_Answer(question=="Why do you want a classic?" && answer=="New cars have no soul")
+	then 
+		Object[] possibleValues = { "Easy: ability to drive off a pier into an estuary",
+									"Synonym for weird",
+									"Soul means the car had an honest job like cop or cabbie",
+									"It means the car is often starring in movies",
+									"It could mean a pure evil?",
+									"Soul is the spirits of 43 dead clowns haunting the car",
+									"Soul is the ability to go a million miles with su carbs and lucas electrics",
+									"Technically novel",
+									"It means riding in it is like sitting on the sofa"};
+		String que = "What does soul mean to you?";
+		String ans = GUI.question(possibleValues, que);
+		
+		Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "Easy: ability to drive off a pier into an estuary"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="Easy: ability to drive off a pier into an estuary")
+	then
+		String mes = "AMPHICAR";
+		GUI.message(mes);
+end
+
+rule "Synonym for weird"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="Synonym for weird")
+	then
+		String mes = "BMW ISETTA, SUBARU 360, MESSERSCHMIDT KABINROLLER";
+		GUI.message(mes);
+end
+
+rule "Soul means the car had an honest job like cop or cabbie"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="Soul means the car had an honest job like cop or cabbie")
+	then
+		String mes = "DODGE MONACO, CHEVY CAPRICE, FORD CROWN VIC";
+		GUI.message(mes);
+end
+
+rule "It means the car is often starring in movies"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="It means the car is often starring in movies")
+	then
+		String mes = "VW BETTLE, DELOREAN DMC-12";
+		GUI.message(mes);
+end
+	
+rule "It could mean a pure evil?"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="It could mean a pure evil?")
+	then
+		String mes = "PLYMOUTH FURY, BUICK GNX";
+		GUI.message(mes);
+end
+	
+rule "Soul is the spirits of 43 dead clowns haunting the car"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="Soul is the spirits of 43 dead clowns haunting the car")
+	then
+		String mes = "NASH METROPOLITAN";
+		GUI.message(mes);
+end
+
+rule "Soul is the ability to go a million miles with su carbs and lucas electrics"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="Soul is the ability to go a million miles with su carbs and lucas electrics")
+	then
+		String mes = "VOLVO P1800";
+		GUI.message(mes);
+end
+
+rule "Technically novel"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="Technically novel")
+	then
+		Object[] possibleValues = { "They thought they were building a plane",
+									"Instead of pistons some metal hamantaschen",
+									"Can burn cooking oil",
+									"Engine in the wrong place (maybe cooled by wrong stuff)"};
+		String que = "Like what?";
+		String ans = GUI.question(possibleValues, que);
+		
+		Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "They thought they were building a plane"
+	when
+		q: Question_and_Answer(question=="Like what?" && answer=="They thought they were building a plane")
+	then
+		String mes = "SAAB 96";
+		GUI.message(mes);
+end
+
+rule "Instead of pistons some metal hamantaschen"
+	when
+		q: Question_and_Answer(question=="Like what?" && answer=="Instead of pistons some metal hamantaschen")
+	then
+		String mes = "MAZDA RX-7";
+		GUI.message(mes);
+end
+
+rule "Can burn cooking oil"
+	when
+		q: Question_and_Answer(question=="Like what?" && answer=="Can burn cooking oil")
+	then
+		String mes = "MERCEDES BENZ 300TD";
+		GUI.message(mes);
+end
+
+rule "Engine in the wrong place (maybe cooled by wrong stuff)"
+	when
+		q: Question_and_Answer(question=="Like what?" && answer=="Engine in the wrong place (maybe cooled by wrong stuff)")
+	then
+		String mes = "PORSHE 912, RENAULT ALPINE";
+		GUI.message(mes);
+end
+
+rule "It means riding in it is like sitting on the sofa"
+	when
+		q: Question_and_Answer(question=="What does soul mean to you?" && answer=="It means riding in it is like sitting on the sofa")
+	then
+		Object[] possibleValues = { "No",
+									"Yes"};
+        String que = "A huge, fast FWD sofa?"; 
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "No_2"
+	when
+		q: Question_and_Answer(question=="A huge, fast FWD sofa?" && answer=="No")
+	then
+		String mes = "LINCOLN TOWN CAR";
+		GUI.message(mes);
+end
+
+rule "Yes_5"
+	when
+		q: Question_and_Answer(question=="A huge, fast FWD sofa?" && answer=="Yes")
+	then
+		String mes = "OLDS TORNADO";
+		GUI.message(mes);
+end	
+	
+//4th path
+rule "I prefer the style"
+	when
+		q: Question_and_Answer(question=="Why do you want a classic?" && answer=="I prefer the style")
+	then
+		Object[] possibleValues = { "I love chrome and loud shirts", 
+        							"Really slow cars that look fast",
+        							"I love brass and lanterns",
+        							"African dictator",
+        							"Like buck Roger's boss's dad",
+        							"I love corvairs but live in 3/4 scale universe",
+        							"I can only drive cars that are museum-worthy",
+        							"Classic german with a touch of pedal confusion",
+        							"Working class hero, also beer"};
+        String que = "Ok, what kind of style?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "I love chrome and loud shirts"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="I love chrome and loud shirts")
+	then
+		String mes = "'57 CHEVY BEL AIR";
+		GUI.message(mes);
+end
+
+rule "Really slow cars that look fast"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="Really slow cars that look fast")
+	then
+		String mes = "OPEL GT, VW KARMANN GHIA, RENAULT FLORIDE";
+		GUI.message(mes);
+end
+
+rule "I love brass and lanterns"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="I love brass and lanterns")
+	then
+		String mes = "ANYTHING PRE WWI, MAYBE A PACKARD";
+		GUI.message(mes);
+end
+
+rule "African dictator"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="African dictator")
+	then
+		String mes = "MERCEDES BENZ-600";
+		GUI.message(mes);
+end
+
+rule "Like buck Roger's boss's dad"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="Like buck Roger's boss's dad")
+	then
+		String mes = "'59 CADILLAC ELDORDO";
+		GUI.message(mes);
+end
+
+rule "I love corvairs but live in 3/4 scale universe"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="I love corvairs but live in 3/4 scale universe")
+	then
+		String mes = "NSU PRINZ";
+		GUI.message(mes);
+end
+
+rule "I can only drive cars that are museum-worthy"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="I can only drive cars that are museum-worthy")
+	then
+		String mes = "CITROEN DS. , LAMBORGHINI MIURA, CORD 812, JAGUAR E-TYPE";
+		GUI.message(mes);
+end
+
+rule "Classic german with a touch of pedal confusion"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="Classic german with a touch of pedal confusion")
+	then
+		String mes = "AUDI 100";
+		GUI.message(mes);
+end
+
+rule "Working class hero, also beer"
+	when
+		q: Question_and_Answer(question=="Ok, what kind of style?" && answer=="Working class hero, also beer")
+	then
+		Object[] possibleValues = { "Does your hat say you'd rather push a chevy?", 
+        							"What do you want from tires?"};
+        String que = "";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "Does your hat say you'd rather push a chevy?"
+	when
+		q: Question_and_Answer(question=="" && answer=="Does your hat say you'd rather push a chevy?")
+	then
+		Object[] possibleValues = { "Dammit, I lost my hat", 
+        							"So it does, friend"};
+        String que = "Does your hat say you'd rather push a chevy?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "What do you want from tires?"
+	when
+		q: Question_and_Answer(question=="" && answer=="What do you want from tires?")
+	then
+		Object[] possibleValues = { "Noise and smoke", 
+        							"Noise, smoke and trailer partk's undying respect"};
+        String que = "What do you want from tires?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "Dammit, I lost my hat"
+	when
+		q: Question_and_Answer(question=="Does your hat say you'd rather push a chevy?" && answer=="Dammit, I lost my hat")
+	then
+		String mes = "AMC-AMX";
+		GUI.message(mes);
+end
+
+rule "So it does, friend"
+	when
+		q: Question_and_Answer(question=="Does your hat say you'd rather push a chevy?" && answer=="So it does, friend")
+	then
+		String mes = "CHEVY CAMARO";
+		GUI.message(mes);
+end
+
+rule "Noise and smoke"
+	when
+		q: Question_and_Answer(question=="What do you want from tires?" && answer=="Noise and smoke")
+	then
+		String mes = "FORD MUSTANG MACH I, FORD MUSTANG,CHEVY C3 CORVETTE";
+		GUI.message(mes);
+end
+
+rule "Noise, smoke and trailer partk's undying respect"
+	when
+		q: Question_and_Answer(question=="What do you want from tires?" && answer=="Noise, smoke and trailer partk's undying respect")
+	then
+		String mes = "FOX BODY MUSTANG, FORD MUSTANG";
+		GUI.message(mes);
+end
+
+//5th path
+rule "Love speed, hate safety"
+	when
+		q: Question_and_Answer(question=="Why do you want a classic?" && answer=="Love speed, hate safety")
+	then
+		Object[] possibleValues = { "Fast and cheep", 
+        							"Fake is fine",
+        							"I have a death wish",
+        							"I love speed and money"};
+        String que = "Real speed or just feel speedy?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "Fast and cheep"
+	when
+		q: Question_and_Answer(question=="Real speed or just feel speedy?" && answer=="Fast and cheep")
+	then
+		String mes = "DODGE OMNI GLH";
+		GUI.message(mes);
+end
+
+rule "Fake is fine"
+	when
+		q: Question_and_Answer(question=="Real speed or just feel speedy?" && answer=="Fake is fine")
+	then
+		String mes = "DATSUN S10, MINI COOPER, Mk1 VW GOLF GTI, HONDA CRX";
+		GUI.message(mes);
+end
+
+rule "I have a death wish"
+	when
+		q: Question_and_Answer(question=="Real speed or just feel speedy?" && answer=="I have a death wish")
+	then
+		Object[] possibleValues = { "Crushed by V8 in tiny space", 
+        							"Electrocuted by wiper switch",
+        							"Blaze of glory",
+        							"Car, tree",
+        							"Run of out talent,off cliff"};
+        String que = "How do you want to go?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "Crushed by V8 in tiny space"
+	when
+		q: Question_and_Answer(question=="How do you want to go?" && answer=="Crushed by V8 in tiny space")
+	then
+		String mes = "SUNBEAM TIGER";
+		GUI.message(mes);
+end
+
+rule "Electrocuted by wiper switch"
+	when
+		q: Question_and_Answer(question=="How do you want to go?" && answer=="Electrocuted by wiper switch")
+	then
+		String mes = "JAGUAR E-TYPE";
+		GUI.message(mes);
+end
+
+rule "Blaze of glory"
+	when
+		q: Question_and_Answer(question=="How do you want to go?" && answer=="Blaze of glory")
+	then
+		String mes = "FERRARI TESTAROSA";
+		GUI.message(mes);
+end
+
+rule "Car, tree"
+	when
+		q: Question_and_Answer(question=="How do you want to go?" && answer=="Car, tree")
+	then
+		String mes = "CAMARO IROC-Z, PLYMOUTH ROAD RUNNER";
+		GUI.message(mes);
+end
+
+rule "Run of out talent,off cliff"
+	when
+		q: Question_and_Answer(question=="How do you want to go?" && answer=="Run of out talent,off cliff")
+	then
+		String mes = "PORSHE SPYDER";
+		GUI.message(mes);
+end
+
+rule "I love speed and money"
+	when
+		q: Question_and_Answer(question=="Real speed or just feel speedy?" && answer=="I love speed and money")
+	then
+		Object[] possibleValues = { "Some kind of duke and I rally", 
+        							"My goal is to drive my childhood bedroom posters",
+        							"I have a weird fetish where I like people asking -Is it a replica?"};
+        String que = "Great, who are you?";
+        String ans = GUI.question(possibleValues, que);
+        
+        Question_and_Answer q1=new Question_and_Answer();
+		q1.setQuestion(que);
+		q1.setAnswer(ans);
+		insert(q1);
+end
+
+rule "Some kind of duke and I rally"
+	when
+		q: Question_and_Answer(question=="Great, who are you?" && answer=="Some kind of duke and I rally")
+	then
+		String mes = "LANCIA STARTOS";
+		GUI.message(mes);
+end
+
+rule "My goal is to drive my childhood bedroom posters"
+	when
+		q: Question_and_Answer(question=="Great, who are you?" && answer=="My goal is to drive my childhood bedroom posters")
+	then
+		String mes = "LAMBORGHINI COUNTACH, FERRARI 250 GTO";
+		GUI.message(mes);
+end
+
+rule "I have a weird fetish where I like people asking -Is it a replica?"
+	when
+		q: Question_and_Answer(question=="Great, who are you?" && answer=="I have a weird fetish where I like people asking -Is it a replica?")
+	then
+		String mes = "AC COBRA, PORSHE 356 SPEEDSTER";
+		GUI.message(mes);
+end
